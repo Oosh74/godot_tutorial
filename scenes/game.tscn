@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c55ps6knpiww6" path="res://scenes/scripts.gd" id="1_gee14"]
 [ext_resource type="PackedScene" uid="uid://vchkaurmhqew" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="FontFile" uid="uid://1hagxchojiyc" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://c0s3e0au0q5v5" path="res://scenes/platform.tscn" id="2_lnu2h"]
 [ext_resource type="TileSet" uid="uid://bljb1cmrqbt0l" path="res://scenes/world_tileset.tres" id="4_iywne"]
 [ext_resource type="PackedScene" uid="uid://wcxwt6dgu8r0" path="res://scenes/coin.tscn" id="4_lbhrr"]
@@ -54,6 +55,18 @@ _data = {
 [node name="Game Manager" type="Node" parent="." unique_id=1764523011]
 unique_name_in_owner = true
 script = ExtResource("1_gee14")
+
+[node name="Score Label" type="Label" parent="Game Manager" unique_id=1157637083]
+offset_left = 533.0
+offset_top = -217.0
+offset_right = 641.0
+offset_bottom = -198.0
+theme_override_colors/font_color = Color(0.03137255, 0.14117648, 0.33333334, 1)
+theme_override_fonts/font = ExtResource("2_0tnpc")
+theme_override_font_sizes/font_size = 8
+text = "You collected X coins"
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="player" parent="." unique_id=1723996702 instance=ExtResource("1_uwrxv")]
 
@@ -183,9 +196,10 @@ position = Vector2(599, 15)
 [node name="Text" type="Node" parent="." unique_id=2143071246]
 
 [node name="Label" type="Label" parent="Text" unique_id=1703751480]
-offset_left = -123.0
-offset_right = -32.0
-offset_bottom = 10.0
+offset_left = -104.0
+offset_top = -26.0
+offset_right = -13.0
+offset_bottom = -16.0
 theme_override_colors/font_color = Color(0.03137255, 0.14117648, 0.33333334, 1)
 theme_override_fonts/font = ExtResource("7_u5sy4")
 theme_override_font_sizes/font_size = 8
@@ -222,21 +236,12 @@ theme_override_font_sizes/font_size = 8
 text = "Almost there!"
 
 [node name="Label5" type="Label" parent="Text" unique_id=1902665412]
-offset_left = 534.0
-offset_top = -228.0
-offset_right = 625.0
-offset_bottom = -218.0
+offset_left = 543.0
+offset_top = -235.0
+offset_right = 634.0
+offset_bottom = -225.0
 theme_override_colors/font_color = Color(0.03137255, 0.14117648, 0.33333334, 1)
 theme_override_fonts/font = ExtResource("7_u5sy4")
 theme_override_font_sizes/font_size = 8
 text = "You made it!"
-
-[node name="Label6" type="Label" parent="Text" unique_id=1157637083]
-offset_left = 533.0
-offset_top = -217.0
-offset_right = 624.0
-offset_bottom = -207.0
-theme_override_colors/font_color = Color(0.03137255, 0.14117648, 0.33333334, 1)
-theme_override_fonts/font = ExtResource("7_u5sy4")
-theme_override_font_sizes/font_size = 8
-text = "You collected X coins"
+horizontal_alignment = 1

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bi3buqxprfj61" path="res://assets/sprites/knight.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c8injgcdemuvd" path="res://player.gd" id="1_g2els"]
+[ext_resource type="AudioStream" uid="uid://b11fhqfxtggx0" path="res://assets/sounds/jump.wav" id="3_qhqgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("1_3vyb7")
@@ -186,3 +187,15 @@ frame_progress = 0.46653706
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=668556163]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_fjrip")
+
+[node name="Jump Sound" type="AudioStreamPlayer2D" parent="." unique_id=19914315]
+stream = ExtResource("3_qhqgy")
+bus = &"SFX"
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=2100814868]
+wait_time = 0.15
+one_shot = true
+
+[node name="JumpBufferTimer" type="Timer" parent="." unique_id=828625741]
+wait_time = 0.3
+one_shot = true
