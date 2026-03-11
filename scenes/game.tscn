@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://maq6idcqscs2"]
 
 [ext_resource type="Script" uid="uid://c55ps6knpiww6" path="res://scenes/scripts.gd" id="1_gee14"]
-[ext_resource type="PackedScene" uid="uid://vchkaurmhqew" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://vchkaurmhqew" path="res://scenes/player/player.tscn" id="1_uwrxv"]
 [ext_resource type="FontFile" uid="uid://1hagxchojiyc" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="2_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://c0s3e0au0q5v5" path="res://scenes/platform.tscn" id="2_lnu2h"]
 [ext_resource type="TileSet" uid="uid://bljb1cmrqbt0l" path="res://scenes/world_tileset.tres" id="4_iywne"]
@@ -70,7 +70,7 @@ autowrap_mode = 2
 
 [node name="player" parent="." unique_id=1723996702 instance=ExtResource("1_uwrxv")]
 
-[node name="Camera2D" type="Camera2D" parent="player" unique_id=99534260]
+[node name="playerCamera" type="Camera2D" parent="player" unique_id=99534260]
 position = Vector2(-1, 0)
 zoom = Vector2(4, 4)
 limit_bottom = 90
