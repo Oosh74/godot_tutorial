@@ -1,8 +1,7 @@
 extends PlayerState
 
-
 func enterState():
-	pass
+	StateName = "Jump"
 
 func exitState():
 	pass
@@ -11,4 +10,5 @@ func draw():
 	pass
 
 func update(delta: float):
-	pass
+	Player.animatedSprite.play("jumping")
+	Player.handleFlipH()

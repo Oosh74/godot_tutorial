@@ -3,13 +3,14 @@
 [ext_resource type="Texture2D" uid="uid://bi3buqxprfj61" path="res://assets/sprites/knight.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c8injgcdemuvd" path="res://player.gd" id="1_g2els"]
 [ext_resource type="AudioStream" uid="uid://b11fhqfxtggx0" path="res://assets/sounds/jump.wav" id="3_qhqgy"]
-[ext_resource type="Script" uid="uid://dx73xen56b7ek" path="res://scenes/player/States.gd" id="4_lvxji"]
-[ext_resource type="Script" uid="uid://qpxsrpocp6nv" path="res://scenes/player/JumpState.gd" id="5_0owmy"]
-[ext_resource type="Script" uid="uid://bfmw5xjned6w2" path="res://scenes/player/LockedState.gd" id="5_5gtgg"]
-[ext_resource type="Script" uid="uid://cteg4u5uugwqd" path="res://scenes/player/RunState.gd" id="5_75vfm"]
-[ext_resource type="Script" uid="uid://by3tsuucj7ecx" path="res://scenes/player/FallState.gd" id="5_h17s1"]
-[ext_resource type="Script" uid="uid://dguvov6nu7qmq" path="res://scenes/player/IdleState.gd" id="5_p47bc"]
-[ext_resource type="Script" uid="uid://3l7lugv5hrg3" path="res://scenes/player/JumpPeakState.gd" id="8_qek5x"]
+[ext_resource type="Script" uid="uid://dx73xen56b7ek" path="res://scenes/player/states/States.gd" id="4_lvxji"]
+[ext_resource type="Script" uid="uid://qpxsrpocp6nv" path="res://scenes/player/states/JumpState.gd" id="5_0owmy"]
+[ext_resource type="Script" uid="uid://bfmw5xjned6w2" path="res://scenes/player/states/LockedState.gd" id="5_5gtgg"]
+[ext_resource type="Script" uid="uid://cteg4u5uugwqd" path="res://scenes/player/states/RunState.gd" id="5_75vfm"]
+[ext_resource type="Script" uid="uid://by3tsuucj7ecx" path="res://scenes/player/states/FallState.gd" id="5_h17s1"]
+[ext_resource type="Script" uid="uid://dguvov6nu7qmq" path="res://scenes/player/states/IdleState.gd" id="5_p47bc"]
+[ext_resource type="Script" uid="uid://3l7lugv5hrg3" path="res://scenes/player/states/JumpPeakState.gd" id="8_qek5x"]
+[ext_resource type="Script" uid="uid://67vevj5jlowj" path="res://scenes/player/states/DeathState.gd" id="11_je7p5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4ni07"]
 atlas = ExtResource("1_3vyb7")
@@ -293,11 +294,13 @@ script = ExtResource("1_g2els")
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=680751760]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
-animation = &"double jump"
+animation = &"run"
 autoplay = "idle"
+frame = 5
+frame_progress = 0.1949671
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=668556163]
-position = Vector2(0, -6)
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_fjrip")
 
 [node name="Jump Sound" type="AudioStreamPlayer2D" parent="." unique_id=19914315]
@@ -305,11 +308,9 @@ stream = ExtResource("3_qhqgy")
 bus = &"SFX"
 
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=2100814868]
-wait_time = 0.15
 one_shot = true
 
 [node name="JumpBufferTimer" type="Timer" parent="." unique_id=828625741]
-wait_time = 0.3
 one_shot = true
 
 [node name="StateMachine" type="Node" parent="." unique_id=20853554]
@@ -332,3 +333,36 @@ script = ExtResource("5_p47bc")
 
 [node name="JumpPeak" type="Node" parent="StateMachine" unique_id=1907840685]
 script = ExtResource("8_qek5x")
+
+[node name="Death" type="Node" parent="StateMachine" unique_id=82811898]
+script = ExtResource("11_je7p5")
+
+[node name="WallRayLeft" type="RayCast2D" parent="." unique_id=929068985]
+position = Vector2(0, -7)
+target_position = Vector2(-8, 0)
+
+[node name="WallRayRight" type="RayCast2D" parent="." unique_id=445389384]
+position = Vector2(0, -7)
+target_position = Vector2(8, 0)
+
+[node name="LedgeRayLeftLow" type="RayCast2D" parent="." unique_id=179926464]
+position = Vector2(0, -3)
+target_position = Vector2(-8, 0)
+
+[node name="LedgeRayLeftHigh" type="RayCast2D" parent="." unique_id=1461693772]
+position = Vector2(0, -12)
+target_position = Vector2(-8, 0)
+
+[node name="LedgeRayRightLow" type="RayCast2D" parent="." unique_id=53972007]
+position = Vector2(0, -3)
+target_position = Vector2(8, 0)
+
+[node name="LedgeRayRightHigh" type="RayCast2D" parent="." unique_id=1110323760]
+position = Vector2(0, -12)
+rotation = -1.5707964
+target_position = Vector2(0, 8)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1511955858 groups=["Player"]]
+position = Vector2(0, -12)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

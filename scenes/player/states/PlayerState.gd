@@ -1,4 +1,5 @@
-class_name PlayerState extends Node
+class_name PlayerState
+extends Node
 
 var States = null
 var Player = null

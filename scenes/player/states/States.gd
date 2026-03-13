@@ -6,3 +6,4 @@ extends Node
 @onready var Run: Node = $Run
 @onready var Idle: Node = $Idle
 @onready var JumpPeak: Node = $JumpPeak
+@onready var Death: Node = $Death
